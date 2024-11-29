@@ -12,10 +12,10 @@ name = "downloadpytorch"
 torch = {version = "==2.3.1", index = "downloadpytorch"}
 datasets = "==3.1.0"
 evaluate = "==0.4.3"
-flwr = "==1.13.1"
 transformers = "==4.46.3"
 pipfile = "*"
 flwr-datasets = "==0.4.0"
+flwr = {extras = ["simulation"], version = "==1.13.1"}
 
 [dev-packages]
 

@@ -43,7 +43,7 @@ def load_data(
     
     partition_train_test = partition_train_test.map(tokenize_function, batched=True)
     partition_train_test = partition_train_test.remove_columns("text")
-    partition_train_test = partition_train_test.rename_columns("label", "labels")
+    partition_train_test = partition_train_test.rename_columns({"label": "labels"})
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
     trainloader = DataLoader(

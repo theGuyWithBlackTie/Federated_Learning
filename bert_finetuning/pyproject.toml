@@ -4,13 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BERT_Finetuning"
+version = "0.0.1"
 
 [tool.flwr.app]
 publisher = "ashish"
 
 [tool.flwr.app.components]
-serverapp = "huggingface_example.server_app:app"
-clientapp = "huggingface_example.client_app:app"
+serverapp = "src.server:app"
+clientapp = "src.client:app"
 
 [tool.flwr.app.config]
 num-server-rounds = 3
@@ -22,7 +23,7 @@ fraction-evaluate = 0.1
 default = "local-simulation"
 
 [tool.flwr.federations.local-simulation]
-options.num-supernodes = 100
+options.num-supernodes = 3
 
 [tool.flwr.federations.local-simulation-gpu]
 options.num-supernodes = 100
