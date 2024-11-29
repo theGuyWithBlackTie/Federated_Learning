@@ -1,6 +1,7 @@
 from typing import Any
 from collections import OrderedDict
 
+from tqdm import tqdm
 import torch
 from evaluate import load as load_metric
 from torch.optim import AdamW
@@ -77,7 +78,7 @@ def train(net, trainloader, epochs, device) -> None:
     optimizer = AdamW(net.parameters(), lr=5e-5)
     net.train()
     for _ in range(epochs):
-        for batch in trainloader:
+        for idx, batch in tqdm(enumerate(trainloader), total=len(trainloader)):
             batch = {k: v.to(device) for k,v in batch.items()}
             outputs = net(**batch)
             loss = outputs.loss
@@ -90,7 +91,7 @@ def test(net, testloader, device) -> tuple[Any | float, Any]:
     metric = load_metric("accuracy")
     loss = 0
     net.eval()
-    for batch in testloader:
+    for idx, batch in tqdm(enumerate(testloader), total=len(testloader)):
         batch = {k: v.to(device) for k,v in batch.items()}
         with torch.no_grad():
             outputs = net(**batch)
