@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://download.pytorch.org/whl/cu121"
+verify_ssl = true
+name = "downloadpytorch"
+
+[packages]
+torch = {version = "==2.3.1", index = "downloadpytorch"}
+datasets = "==3.1.0"
+evaluate = "==0.4.3"
+transformers = "==4.46.3"
+pipfile = "*"
+flwr-datasets = "==0.4.0"
+flwr = {extras = ["simulation"], version = "==1.13.1"}
+scikit-learn = "==1.5.2"
+tqdm = "==4.67.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
